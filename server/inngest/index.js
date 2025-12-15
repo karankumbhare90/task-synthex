@@ -1,5 +1,5 @@
 import { Inngest } from 'inngest'
-import prisma from '../config/prisma';
+import prisma from '../config/prisma.js';
 
 export const inngest = new Inngest({ id: "TaskSynthex" })
 
