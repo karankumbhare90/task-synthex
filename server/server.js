@@ -1,8 +1,8 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import { clerkMiddleware } from '@clerk/express'
 import { serve } from "inngest/express";
-import 'dotenv/config'
 import { functions, inngest } from './inngest/index.js';
 
 const app = express();
