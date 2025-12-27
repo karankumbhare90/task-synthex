@@ -1,7 +1,6 @@
 import { Inngest } from 'inngest'
 import prisma from '../config/prisma.js';
 import { sendEmail } from '../config/nodemailer.config.js';
-import { assign } from 'nodemailer/lib/shared/index.js';
 
 export const inngest = new Inngest({ id: "TaskSynthex" })
 

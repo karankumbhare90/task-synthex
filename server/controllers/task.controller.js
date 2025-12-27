@@ -41,11 +41,12 @@ export const createTask = async (req, res) => {
         })
 
         await inngest.send({
-            event: `app/task.assigned`,
+            name: "app/task.assigned",
             data: {
-                taskId: task.id, origin
+                taskId: task.id,
+                origin,
             }
-        })
+        });
 
         return res.status(201).json({ task: taskWithAssignee, message: `Task created successfully !!` })
     } catch (error) {
