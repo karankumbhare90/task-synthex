@@ -9,7 +9,7 @@ export const createProject = async (req, res) => {
         // Check if user has the admin role for the workspace
         const workspace = await prisma.workspace.findUnique({
             where: { id: workspaceId },
-            includes: { members: { includes: { user: true } } }
+            include: { members: { include: { user: true } } }
         })
 
         if (!workspace) {
@@ -52,7 +52,7 @@ export const createProject = async (req, res) => {
             await prisma.projectMember.createMany({
                 data: memberToAdd.map(memberId => ({
                     projectId: project.id,
-                    userid: memberId
+                    userId: memberId
                 }))
             })
         }
