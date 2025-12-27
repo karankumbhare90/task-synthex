@@ -143,6 +143,7 @@ const sendTaskAssignmentEmail = inngest.createFunction(
             where: { id: taskId },
             include: { assignee: true, project: true }
         })
+        if (!task || !task.assignee) return;
 
         await sendEmail({
             to: task.assignee.email,
@@ -174,7 +175,7 @@ const sendTaskAssignmentEmail = inngest.createFunction(
             await step.sleepUntil(`wait-for-the-due-date`, new Date(task.due_date));
 
             await step.run(`check-if-task-is-completed`, async () => {
-                const task = await prisma.task.find({
+                const task = await prisma.task.findUnique({
                     where: { id: taskId },
                     include: { assignee: true, project: true }
                 })

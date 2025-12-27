@@ -41,7 +41,7 @@ export const createTask = async (req, res) => {
         })
 
         await inngest.send({
-            name: `app/task.assigned`,
+            event: `app/task.assigned`,
             data: {
                 taskId: task.id, origin
             }
