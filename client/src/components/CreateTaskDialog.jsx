@@ -26,7 +26,6 @@ export default function CreateTaskDialog({ showCreateTask, setShowCreateTask, pr
         due_date: "",
     });
     const handleSubmit = async (e) => {
-        console.log("Form Data : ", formData)
         e.preventDefault();
         setIsSubmitting(true)
         try {
@@ -38,8 +37,6 @@ export default function CreateTaskDialog({ showCreateTask, setShowCreateTask, pr
                     }
                 }
             )
-
-            console.log("Data : ", data)
 
             setShowCreateTask(false);
             setFormData({

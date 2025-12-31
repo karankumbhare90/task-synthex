@@ -26,7 +26,6 @@ const InviteMemberDialog = ({ isDialogOpen, setIsDialogOpen }) => {
                 role: "org:member",
             });
         } catch (error) {
-            console.log(error)
             toast.error(error?.response?.data?.message || error.message)
         }
         finally {
