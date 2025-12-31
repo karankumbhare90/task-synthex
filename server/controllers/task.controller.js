@@ -2,6 +2,7 @@ import prisma from "../config/prisma.js";
 import { inngest } from "../inngest/index.js";
 
 // Create a Task
+// 5:02:59
 export const createTask = async (req, res) => {
     try {
         const { userId } = await req.auth();
@@ -29,6 +30,7 @@ export const createTask = async (req, res) => {
                 title,
                 description,
                 priority,
+                type,
                 assigneeId,
                 status,
                 due_date: new Date(due_date)

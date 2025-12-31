@@ -2,7 +2,10 @@ import { Inngest } from 'inngest'
 import prisma from '../config/prisma.js';
 import { sendEmail } from '../config/nodemailer.config.js';
 
-export const inngest = new Inngest({ id: "TaskSynthex" })
+export const inngest = new Inngest({
+    id: "TaskSynthex",
+    eventKey: process.env.DEFAULT_INGEST_KEY
+})
 
 // Inngest function to create user
 const syncUserCreation = inngest.createFunction(
@@ -133,8 +136,8 @@ const syncWorkspaceMemberCreation = inngest.createFunction(
 
 // Inngest Function to Send Email on Task Creation
 const sendTaskAssignmentEmail = inngest.createFunction(
-    { id: `send-task-assignment-email` },
-    { event: `app/task.assigned` },
+    { id: 'send-task-assignment-email' },
+    { event: 'app/task.assigned' },
     async ({ event, step }) => {
         const { taskId, origin } = event.data;
 
@@ -142,7 +145,8 @@ const sendTaskAssignmentEmail = inngest.createFunction(
             where: { id: taskId },
             include: { assignee: true, project: true }
         })
-        if (!task || !task.assignee) return;
+
+        if (!task || !task.assigneeId) return;
 
         await sendEmail({
             to: task.assignee.email,

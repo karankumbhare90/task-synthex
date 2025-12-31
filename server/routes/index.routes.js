@@ -11,6 +11,6 @@ const routes = express.Router();
 routes.use(`/workspace`, protect, workspaceRoutes);
 routes.use(`/project`, protect, projectRouter);
 routes.use(`/task`, protect, taskRouter);
-routes.use(`/router`, protect, commentRouter);
+routes.use(`/comments`, protect, commentRouter);
 
 export default routes;
